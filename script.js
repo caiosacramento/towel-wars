@@ -1,52 +1,36 @@
-var dieRoll = function (){
+var dieRoll = function () {
     'use strict';
     return Math.ceil(Math.random() * 6);
 };
 
-var towel1 = {
-    name: 'Towelie',
-    strength: 4,
-    armor: 3,
-    endurance: 2
-};
-towel1.life = towel1.endurance * 5;
-
-var towel2 = {
-    name: 'Mr Hankey',
-    strength: 3,
-    armor: 1,
-    endurance: 5
-};
-towel2.life = towel2.endurance * 5;
-
-var totalDamage = function () {
+var character = function (name, pointsLimit) {
     'use strict';
-    return (towel1.strength * dieRoll()) - (towel2.armor * dieRoll());
+    do {
+        var towel = {
+            name: name,
+            strength: parseInt(prompt('Força:')),
+            armor: parseInt(prompt('Armadura:')),
+            endurance: parseInt(prompt('Resistência:'))
+        };
+    } while ((towel.armor + towel.endurance + towel.strength) > pointsLimit);
+    return towel;
+};
+
+var towel1 = character('Rafael', 20);
+var towel2 = character('Caio', 20);
+console.log(towel1);
+console.log(towel2);
+
+var totalDamage = function (attacker, defender) {
+    'use strict';
+    return (attacker.strength * dieRoll()) - (defender.armor * dieRoll());
 };
 
 var battle = function (){
     'use strict';
-    while (towel2.life > 0) {
-        towel2.life -= totalDamage();
-        console.log(towel2.life);
+    while (towel1.life > 0 && towel2.life > 0) {
+        towel2.life -= totalDamage(towel1, towel2);
+        towel1.life -= totalDamage(towel2, towel1);
     }
-    return 'MORREU PARCERO';
+    return towel1.life > 0 ? console.log(towel1.name) + ' ganhou' : console.log(towel2.name) + ' ganhou';
 };
-
-var character = function (name, pointsLimit){
-    'use strict';
-    do {
-    var towel = {
-    strength: prompt('Força:'),
-    armor: prompt('Armadura:'), 
-    endurance: prompt('Resistência:')
-    };
-    } while (parseInt(towel.armor) + parseInt(towel.endurance) + parseInt(towel.strength) > pointsLimit);
-    console.log(name);
-    console.log(towel.strength);
-    console.log(towel.armor);
-    console.log(towel.endurance);
-    return 'Caio, não durma';
-};
-
-
