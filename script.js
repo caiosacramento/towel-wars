@@ -4,20 +4,22 @@ var dieRoll = function (){
 };
 
 var towel1 = {
-    strength: 4, 
-    armor: 3, 
+    name: 'Towelie',
+    strength: 4,
+    armor: 3,
     endurance: 2
 };
-towel1.life = towel1.endurance*5;
+towel1.life = towel1.endurance * 5;
 
 var towel2 = {
-    strength: 3, 
-    armor: 1, 
+    name: 'Mr Hankey',
+    strength: 3,
+    armor: 1,
     endurance: 5
 };
-towel2.life = towel2.endurance*5;
+towel2.life = towel2.endurance * 5;
 
-var totalDamage = function (){
+var totalDamage = function () {
     'use strict';
     return (towel1.strength * dieRoll()) - (towel2.armor * dieRoll());
 };
@@ -30,3 +32,21 @@ var battle = function (){
     }
     return 'MORREU PARCERO';
 };
+
+var character = function (name, pointsLimit){
+    'use strict';
+    do {
+    var towel = {
+    strength: prompt('Força:'),
+    armor: prompt('Armadura:'), 
+    endurance: prompt('Resistência:')
+    };
+    } while (parseInt(towel.armor) + parseInt(towel.endurance) + parseInt(towel.strength) > pointsLimit);
+    console.log(name);
+    console.log(towel.strength);
+    console.log(towel.armor);
+    console.log(towel.endurance);
+    return 'Caio, não durma';
+};
+
+
