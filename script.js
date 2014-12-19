@@ -18,8 +18,23 @@ var character = function (name, pointsLimit) {
 
 var towel1 = character('Rafael', 20);
 var towel2 = character('Caio', 20);
-console.log(towel1);
-console.log(towel2);
+
+var characters = document.querySelector('.characters');
+node = document.createElement('div');
+character1 = document.createTextNode(towel1.name);
+character2 = document.createTextNode(towel2.name);
+characters.appendChild(node);
+node.appendChild(character1);
+node.appendChild(character2);
+
+var attack = document.querySelector('button_atk');
+    'use strict'
+button.addEventListener('click', function () {
+    console.log('Character 1 attacks Character 2');
+});
+
+/*characters.innerHTML = '<p>' + towel1.name + '</p>';
+characters.innerHTML = '<p>' + towel2.name + '</p>';*/
 
 var totalDamage = function (attacker, defender) {
     'use strict';
